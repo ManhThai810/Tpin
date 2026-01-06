@@ -252,24 +252,54 @@ def run_pinterest_auto(so_lan):
         
         # === TÌM KIẾM ===
         print(f"\n[STEP 3] Tìm kiếm: {TU_KHOA}")
-        try:
-            # Tìm ô search
-            search_box = wait.until(EC.presence_of_element_located((
-                By.CSS_SELECTOR, "input[name='searchBoxInput'], input[placeholder*='Search'], input[data-test-id='search-box-input']"
-            )))
-            search_box.clear()
-            search_box.send_keys(TU_KHOA)
-            search_box.send_keys(Keys.ENTER)
-            time.sleep(5)
-        except Exception as e:
-            print(f"[ERROR] Không tìm thấy ô search: {e}")
-            safe_screenshot(driver, "error_search.png")
-            return
+        search_success = False
+        
+        # Thử tìm ô search
+        search_selectors = [
+            "input[name='searchBoxInput']",
+            "input[placeholder*='Search']", 
+            "input[data-test-id='search-box-input']",
+            "input[aria-label*='Search']",
+        ]
+        
+        for selector in search_selectors:
+            try:
+                search_box = driver.find_element(By.CSS_SELECTOR, selector)
+                if search_box.is_displayed():
+                    search_box.click()
+                    time.sleep(0.5)
+                    search_box.clear()
+                    search_box.send_keys(TU_KHOA)
+                    search_box.send_keys(Keys.ENTER)
+                    print(f"[OK] Đã tìm kiếm")
+                    search_success = True
+                    break
+            except:
+                continue
+        
+        if not search_success:
+            print("[WARNING] Không tìm được ô search tự động.")
+            print(f"[ACTION] Vui lòng TÌM KIẾM '{TU_KHOA}' trong trình duyệt.")
+            input(">>> Nhấn ENTER sau khi đã tìm kiếm: ")
+        
+        time.sleep(5)
+        
+        # === BỎ QUA PHẦN BẢNG NỔI BẬT ===
+        print("\n[*] Scroll xuống để bỏ qua phần bảng nổi bật...")
+        driver.execute_script("window.scrollBy(0, 800);")
+        time.sleep(2)
+        driver.execute_script("window.scrollBy(0, 500);")
+        time.sleep(2)
         
         # === LẶP LẠI COMMENT ===
-        for i in range(so_lan):
+        commented_pins = set()  # Lưu URL các pin đã comment
+        success_count = 0       # Đếm số comment thành công
+        pin_index = 0           # Index của pin đang xét
+        max_attempts = so_lan * 3  # Giới hạn số lần thử để tránh loop vô hạn
+        
+        while success_count < so_lan and pin_index < max_attempts:
             print(f"\n{'='*50}")
-            print(f"   LẦN COMMENT {i+1}/{so_lan}")
+            print(f"   LẦN COMMENT {success_count+1}/{so_lan} (đang xét pin {pin_index+1})")
             print(f"{'='*50}")
             
             if not is_driver_alive(driver):
@@ -277,23 +307,50 @@ def run_pinterest_auto(so_lan):
                 break
             
             try:
-                # Click vào pin thứ i+1
-                print(f"\n[*] Click vào pin thứ {i+1}...")
+                # Lấy danh sách pin hiện tại
                 pins = driver.find_elements(By.CSS_SELECTOR, "[data-test-id='pin'], div[data-grid-item], a[href*='/pin/']")
                 
-                if len(pins) > i:
-                    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", pins[i])
-                    time.sleep(0.5)
-                    pins[i].click()
-                    print(f"[OK] Đã click pin thứ {i+1}")
-                else:
-                    print(f"[WARNING] Không đủ pin (chỉ có {len(pins)})")
-                    # Scroll xuống để load thêm
-                    driver.execute_script("window.scrollBy(0, 500);")
-                    time.sleep(2)
+                if len(pins) <= pin_index:
+                    print(f"[INFO] Hết pin, scroll để tải thêm...")
+                    driver.execute_script("window.scrollBy(0, 1000);")
+                    time.sleep(3)
+                    pins = driver.find_elements(By.CSS_SELECTOR, "[data-test-id='pin'], div[data-grid-item], a[href*='/pin/']")
+                    if len(pins) <= pin_index:
+                        print("[WARNING] Không còn pin mới!")
+                        break
+                
+                # Lấy URL của pin để check trùng lặp
+                pin_element = pins[pin_index]
+                try:
+                    pin_url = pin_element.get_attribute("href") or ""
+                    # Nếu không có href, thử lấy từ link bên trong
+                    if not pin_url:
+                        link = pin_element.find_element(By.CSS_SELECTOR, "a[href*='/pin/']")
+                        pin_url = link.get_attribute("href") or ""
+                except:
+                    pin_url = f"pin_{pin_index}"
+                
+                # Kiểm tra pin đã comment chưa
+                if pin_url in commented_pins:
+                    print(f"[SKIP] Pin này đã comment rồi, bỏ qua...")
+                    pin_index += 1
                     continue
                 
+                # Click vào pin
+                print(f"\n[*] Click vào pin {pin_index+1}...")
+                driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", pin_element)
+                time.sleep(0.5)
+                pin_element.click()
+                print(f"[OK] Đã click pin")
+                
                 time.sleep(3)  # Đợi pin mở ra
+                
+                # Lấy tiêu đề pin để hiển thị
+                try:
+                    pin_title = driver.find_element(By.CSS_SELECTOR, "h1, [data-test-id='pin-title']").text[:50]
+                    print(f"[INFO] Tiêu đề: {pin_title}...")
+                except:
+                    pin_title = "Unknown"
                 
                 # Nhập comment
                 comment_text = f"{NOI_DUNG_GOC} ({random.randint(100, 999)})"
@@ -304,10 +361,47 @@ def run_pinterest_auto(so_lan):
                 click_post_button(driver)
                 time.sleep(2)
                 
-                # Chụp ảnh bằng chứng
-                safe_screenshot(driver, f"pinterest_comment_{i+1}.png")
+                # Lưu pin vào danh sách đã comment
+                commented_pins.add(pin_url)
+                success_count += 1
                 
-                print(f"\n[SUCCESS] ✅ Hoàn thành comment lần {i+1}!")
+                # Chụp ảnh bằng chứng
+                safe_screenshot(driver, f"pinterest_comment_{success_count}.png")
+                
+                # === KIỂM TRA HOẠT ĐỘNG ĐÁNG NGỜ ===
+                try:
+                    page_text = driver.page_source.lower()
+                    suspicious_keywords = [
+                        "suspicious activity",
+                        "hoạt động đáng ngờ",
+                        "unusual activity", 
+                        "blocked",
+                        "suspended",
+                        "verify your account",
+                        "xác minh tài khoản",
+                        "temporarily locked",
+                        "tạm khóa",
+                        "captcha",
+                    ]
+                    
+                    for keyword in suspicious_keywords:
+                        if keyword in page_text:
+                            print("\n" + "!"*60)
+                            print("   ⚠️  PHÁT HIỆN HOẠT ĐỘNG ĐÁNG NGỜ!")
+                            print("!"*60)
+                            safe_screenshot(driver, f"suspicious_activity_{success_count}.png")
+                            print("\n[ACTION] Pinterest có thể đã khóa tạm thời.")
+                            print("[ACTION] Vui lòng:")
+                            print("         1. ĐĂNG XUẤT tài khoản hiện tại")
+                            print("         2. ĐĂNG NHẬP tài khoản khác")
+                            print("         3. Nhấn ENTER để tiếp tục")
+                            input("\n>>> Nhấn ENTER sau khi đã đổi tài khoản: ")
+                            break
+                except:
+                    pass
+                
+                print(f"\n[SUCCESS] ✅ Hoàn thành comment lần {success_count}!")
+                print(f"[INFO] Đã comment {success_count}/{so_lan} pin khác nhau")
                 
                 # Đóng pin và quay lại kết quả tìm kiếm
                 try:
@@ -317,16 +411,17 @@ def run_pinterest_auto(so_lan):
                     driver.back()
                 
                 time.sleep(2)
+                pin_index += 1  # Tiếp tục với pin tiếp theo
                 
                 # Nghỉ ngẫu nhiên
-                if i < so_lan - 1:
+                if success_count < so_lan:
                     wait_time = random.randint(5, 15)
                     print(f"[*] Nghỉ {wait_time} giây...")
                     time.sleep(wait_time)
                 
             except Exception as e:
                 print(f"[ERROR] Lỗi: {type(e).__name__}: {str(e)[:100]}")
-                safe_screenshot(driver, f"error_pinterest_{i+1}.png")
+                safe_screenshot(driver, f"error_pinterest_{pin_index+1}.png")
                 
                 # Thử quay lại trang tìm kiếm
                 try:
@@ -334,6 +429,7 @@ def run_pinterest_auto(so_lan):
                     time.sleep(2)
                 except:
                     pass
+                pin_index += 1  # Tiếp tục với pin tiếp theo
                 continue
         
         print("\n" + "="*50)
