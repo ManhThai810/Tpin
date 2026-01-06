@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Expert Profile</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1c2e22", // Slightly lighter than background-dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-hidden selection:bg-primary selection:text-background-dark">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl">
+<!-- Header -->
+<header class="flex items-center justify-between px-4 py-4 z-10 shrink-0">
+<button class="flex size-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white">arrow_back_ios_new</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="flex size-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white">ios_share</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white">more_horiz</span>
+</button>
+</div>
+</header>
+<!-- Main Content (Scrollable) -->
+<main class="flex-1 overflow-y-auto no-scrollbar pb-24">
+<div class="flex flex-col items-center px-5 pt-2">
+<!-- Profile Image & Info -->
+<div class="relative mb-4">
+<div class="size-32 rounded-full p-1 bg-gradient-to-tr from-primary to-transparent">
+<div class="size-full rounded-full bg-cover bg-center border-4 border-background-light dark:border-background-dark" data-alt="Portrait of Sarah Jenkins smiling in a natural setting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUPwcbOa2K_-9WcSlnfkP_uefsmUULVXp0djKEXZeBIXf3MWMjGQ3LpjlAX7HkxI0_KlJxysPAIBeam1EVGGJTOn_7Cg0vJdvzMsgv3TxlnoBjJ5QYW0cG_-VIKFiXca1Xo7atvHDXN3a_DZ60pgR1i9rlprgGVJLUFWkC-MJFNmuNyQUxteFwqvX0hSdsJVcqvnKMnnR_09syBM0wT1DGh8PODthpujVlKnpFYfqSUdfjjU_7M-pjoaWH8QMTHTkmiJzDASkoXJJo');">
+</div>
+</div>
+<div class="absolute bottom-1 right-1 bg-background-light dark:bg-background-dark p-1.5 rounded-full">
+<div class="bg-primary text-background-dark rounded-full p-1">
+<span class="material-symbols-outlined filled text-[16px] block">verified</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-1 mb-6">
+<h1 class="text-2xl font-bold tracking-tight">Sarah Jenkins</h1>
+<p class="text-primary font-medium text-sm tracking-wide uppercase">Holistic Nutritionist</p>
+<div class="flex items-center gap-1 mt-1 text-slate-500 dark:text-slate-400 text-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>San Francisco, CA</span>
+</div>
+</div>
+<!-- Stats Row -->
+<div class="flex w-full justify-between gap-4 px-2 mb-8">
+<div class="flex-1 flex flex-col items-center p-3 rounded-2xl bg-white dark:bg-surface-dark shadow-sm">
+<span class="text-lg font-bold">4.9</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Rating</span>
+</div>
+<div class="flex-1 flex flex-col items-center p-3 rounded-2xl bg-white dark:bg-surface-dark shadow-sm">
+<span class="text-lg font-bold">120+</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Sessions</span>
+</div>
+<div class="flex-1 flex flex-col items-center p-3 rounded-2xl bg-white dark:bg-surface-dark shadow-sm">
+<span class="text-lg font-bold">5yr</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Exp.</span>
+</div>
+</div>
+<!-- Audio Player Card -->
+<div class="w-full mb-6">
+<div class="flex items-center gap-4 p-4 rounded-2xl bg-[#1c2e22] border border-white/5 shadow-lg relative overflow-hidden group cursor-pointer">
+<!-- Abstract background accent -->
+<div class="absolute -right-10 -top-10 size-32 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+<button class="relative z-10 flex shrink-0 items-center justify-center rounded-full size-12 bg-primary text-background-dark hover:scale-105 transition-transform shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined filled text-[28px]">play_arrow</span>
+</button>
+<div class="flex-1 flex flex-col gap-2 z-10">
+<div class="flex justify-between items-center">
+<span class="text-sm font-bold text-white">Voice Intro</span>
+<span class="text-xs font-mono text-primary/80">0:45</span>
+</div>
+<!-- Simulated Waveform -->
+<div class="flex items-end gap-1 h-8 w-full">
+<div class="w-1 bg-primary rounded-full h-3 animate-pulse"></div>
+<div class="w-1 bg-primary rounded-full h-5 animate-pulse" style="animation-delay: 0.1s"></div>
+<div class="w-1 bg-primary rounded-full h-8 animate-pulse" style="animation-delay: 0.2s"></div>
+<div class="w-1 bg-primary rounded-full h-4 animate-pulse" style="animation-delay: 0.3s"></div>
+<div class="w-1 bg-primary/50 rounded-full h-6"></div>
+<div class="w-1 bg-primary/50 rounded-full h-3"></div>
+<div class="w-1 bg-white/20 rounded-full h-5"></div>
+<div class="w-1 bg-white/20 rounded-full h-2"></div>
+<div class="w-1 bg-white/20 rounded-full h-7"></div>
+<div class="w-1 bg-white/20 rounded-full h-4"></div>
+<div class="w-1 bg-white/20 rounded-full h-6"></div>
+<div class="w-1 bg-white/20 rounded-full h-3"></div>
+<div class="w-1 bg-white/20 rounded-full h-2"></div>
+<div class="w-1 bg-white/20 rounded-full h-4"></div>
+<div class="w-1 bg-white/20 rounded-full h-2"></div>
+<div class="w-1 bg-white/10 rounded-full h-2"></div>
+<div class="w-1 bg-white/10 rounded-full h-2"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bio Section -->
+<div class="w-full mb-8">
+<h3 class="text-lg font-bold mb-2">About</h3>
+<p class="text-slate-600 dark:text-slate-300 text-base font-normal leading-relaxed">
+                        Helping busy professionals find balance through mindful eating and stress management. 10+ years of experience in holistic health, focusing on gut health and sustainable lifestyle changes.
+                    </p>
+<button class="mt-2 text-primary text-sm font-semibold flex items-center gap-1">
+                        Read more <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- Action Buttons -->
+<div class="flex w-full gap-3 flex-col sm:flex-row mb-6">
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-xl h-14 px-5 bg-primary text-background-dark text-base font-bold tracking-wide shadow-lg shadow-primary/10 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined mr-2">chat_bubble</span>
+                        Chat
+                    </button>
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-xl h-14 px-5 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-base font-bold tracking-wide hover:bg-slate-50 dark:hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined mr-2">calendar_month</span>
+                        Book session
+                    </button>
+</div>
+<!-- Spacer for bottom nav -->
+<div class="h-6"></div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="absolute bottom-0 w-full bg-white/90 dark:bg-[#102216]/90 backdrop-blur-lg border-t border-slate-200 dark:border-white/5 pb-6 pt-3 px-6 z-50">
+<ul class="flex justify-between items-center">
+<li>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">search</span>
+<span class="text-[10px] font-medium">Explore</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors group" href="#">
+<div class="relative">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">mail</span>
+<span class="absolute -top-1 -right-1 size-2 bg-primary rounded-full"></span>
+</div>
+<span class="text-[10px] font-medium">Messages</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined filled">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</body></html>

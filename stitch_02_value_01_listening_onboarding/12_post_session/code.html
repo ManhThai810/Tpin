@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Post Session</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2bee6c",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102216",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body>
+<div class="relative flex h-full min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden font-display text-[#111813] dark:text-white">
+<!-- Top Bar -->
+<div class="flex items-center p-4 pb-2 justify-end">
+<button class="text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white" style="font-size: 24px;">close</span>
+</button>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col items-center justify-center w-full max-w-md mx-auto px-6 pb-8 gap-8">
+<!-- Success Visual -->
+<div class="relative flex flex-col items-center gap-6 animate-fade-in-up">
+<div class="w-32 h-32 bg-center bg-no-repeat bg-cover rounded-full shadow-2xl shadow-primary/20 ring-4 ring-primary/20" data-alt="3D style confetti celebration illustration icon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5-wPrudjZrKeh8OJVcOS4gFDC-MrMZ0uX6RFgPzlv6OX143cgATVnHzyshUGJykTVR3kR1bJe55JFJWmGVElE2X1tElux2_EEQtb7_XrIfA4GpqF1droZjrceL15mcCAzXhG-VYunkRnkAiByg4Qt3x7ZEHzFW_c_46PPyyLFzeFxAbrusLlcsR_Gq2kR3g1PYniNe9Whouqmr3KnU0LdGIp97hqv6ME52brBKGhGSrGWAi0-nr37EGp7piSLOrYBVTeToosRsPbH");'>
+</div>
+<div class="text-center space-y-3">
+<h2 class="text-[#111813] dark:text-white tracking-tight text-[32px] font-bold leading-tight">Session completed</h2>
+<!-- Reward Badge -->
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">emoji_events</span>
+<p class="text-primary font-bold text-sm leading-normal">+20 Wellness Points earned</p>
+</div>
+</div>
+</div>
+<!-- Rating Card -->
+<div class="w-full bg-white/5 border border-white/5 rounded-2xl p-6 flex flex-col items-center gap-4">
+<p class="text-[#9db9a6] text-sm font-medium leading-normal text-center">How was the audio quality?</p>
+<div class="flex flex-wrap gap-2 justify-center">
+<button class="group flex items-center justify-center p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-primary fill-current" style="font-size: 32px; font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<button class="group flex items-center justify-center p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-primary fill-current" style="font-size: 32px; font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<button class="group flex items-center justify-center p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-primary fill-current" style="font-size: 32px; font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<button class="group flex items-center justify-center p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-primary fill-current" style="font-size: 32px; font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<button class="group flex items-center justify-center p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#3f5046] group-hover:text-primary transition-colors" style="font-size: 32px;">star</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Action -->
+<div class="p-6 mt-auto w-full max-w-md mx-auto">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 active:scale-[0.98] transition-all text-[#102216] text-lg font-bold h-14 rounded-xl shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined" style="font-size: 24px;">graphic_eq</span>
+                Listen more voices
+            </button>
+</div>
+<div class="h-5 bg-transparent"></div>
+</div>
+</body></html>

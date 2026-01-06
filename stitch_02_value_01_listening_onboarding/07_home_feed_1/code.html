@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Social Voice Platform - Home Feed</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e53e3d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1A2C20",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem", 
+                        "lg": "1rem", 
+                        "xl": "1.5rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white h-screen flex flex-col overflow-hidden selection:bg-primary selection:text-white">
+<div class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-white/5 pt-safe-top">
+<div class="flex items-center justify-between px-4 py-3">
+<div class="w-8"></div> 
+<h1 class="text-lg font-bold">Home</h1>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-transparent hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+</button>
+</div>
+<div class="flex px-4 justify-between items-end">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-primary text-slate-900 dark:text-white pb-3 pt-2 flex-1 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-wide">For You</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white pb-3 pt-2 flex-1 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-wide">Following</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white pb-3 pt-2 flex-1 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-wide">Topics</p>
+</a>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto no-scrollbar pb-24">
+<article class="relative flex flex-col border-b border-gray-200 dark:border-white/5 py-4">
+<div class="flex items-center gap-3 px-4 mb-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-10 w-10 ring-2 ring-primary ring-offset-2 ring-offset-background-light dark:ring-offset-background-dark" data-alt="Portrait of Sarah J smiling outdoors" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAgYI_peR5BFfh9um2AAeKb8HaE4Jg9_0Z2irajWm8v91FwjBRY6ZuRX6wb0M7Jx7CQkcypqRt3a_cfdnVvxXWXtGHs0qwXFdkkP13gFnvVjQ64temQeYzOOPRlfFznJseoNrNrpFxPvgYlykqz57MoKqrbI2ajAhMB-xeeV6NQdzedvxTZYosEmZ9HD8gnchokBfAwY5jgRkaqtB4j8EfjidCY89LnBhKsh4fB9XBI312MGyhhRxElppXIjOGnsrZ0UX-adROafI9S");'>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold truncate">Sarah J.</p>
+<p class="text-xs text-slate-500 dark:text-gray-400">@sarahjoy • 2h ago</p>
+</div>
+<button class="text-slate-400 hover:text-slate-900 dark:hover:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="px-4 mb-4">
+<h2 class="text-lg font-bold leading-tight mb-1">Morning Gratitude ☀️</h2>
+<div class="flex flex-wrap gap-2 text-primary text-sm font-medium">
+<span>#Meditation</span>
+<span>#MorningRoutine</span>
+</div>
+</div>
+<div class="px-4 mb-4">
+<div class="bg-white dark:bg-surface-dark rounded-xl p-3 flex items-center gap-4 shadow-sm border border-gray-100 dark:border-white/5">
+<button class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined filled" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-[3px] h-8 opacity-80">
+<div class="w-1 bg-primary h-3 rounded-full"></div>
+<div class="w-1 bg-primary h-5 rounded-full"></div>
+<div class="w-1 bg-primary h-8 rounded-full"></div>
+<div class="w-1 bg-primary h-4 rounded-full"></div>
+<div class="w-1 bg-primary h-6 rounded-full"></div>
+<div class="w-1 bg-primary h-3 rounded-full"></div>
+<div class="w-1 bg-primary h-5 rounded-full"></div>
+<div class="w-1 bg-primary h-2 rounded-full"></div>
+<div class="w-1 bg-slate-200 dark:bg-white/20 h-4 rounded-full"></div>
+<div class="w-1 bg-slate-200 dark:bg-white/20 h-6 rounded-full"></div>
+<div class="w-1 bg-slate-200 dark:bg-white/20 h-3 rounded-full"></div>
+<div class="w-1 bg-slate-200 dark:bg-white/20 h-5 rounded-full"></div>
+<div class="w-1 bg-slate-200 dark:bg-white/20 h-2 rounded-full"></div>
+<div class="w-1 bg-slate-200 dark:bg-white/20 h-4 rounded-full"></div>
+<div class="w-1 bg-slate-200 dark:bg-white/20 h-2 rounded-full"></div>
+<div class="w-1 bg-slate-200 dark:bg-white/20 h-3 rounded-full"></div>
+</div>
+<span class="text-xs font-mono font-medium text-slate-500 dark:text-gray-400 whitespace-nowrap">1:45</span>
+</div>
+</div>
+<div class="flex px-4 gap-6">
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-pink-500 transition-colors">favorite</span>
+<span class="text-sm font-bold text-slate-500 dark:text-gray-400 group-hover:text-pink-500 transition-colors">245</span>
+</button>
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">chat_bubble</span>
+<span class="text-sm font-bold text-slate-500 dark:text-gray-400 group-hover:text-primary transition-colors">24</span>
+</button>
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-white transition-colors">ios_share</span>
+</button>
+</div>
+</article>
+<article class="relative flex flex-col border-b border-gray-200 dark:border-white/5 py-4">
+<div class="flex items-center gap-3 px-4 mb-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-10 w-10" data-alt="Close up of Davon M looking serious" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCoBc-EpKrdUbkY555Gj5Qp6gmuEcrUAggUd9wedsT4pDFJ7TLGiDHAgAWx3JvvjYffPaj1iTSV60DOpnZ3poOr35eOZA88Z1-epTFGpf7S_LMx_4mRkau7ECK_4Dd-K6ghZuZe_vBc8EJXp8vbOxCeu0x2W6FJyykY50BbWrxZpIuNIhUR5gkrx-eZUMevjMHJgWY4rzO9CUurGCcsNn0asgBJ5O1ayFymnp7R42Xwz5hycl14ujqNs0J5Jiu14DmxJH6LK1_osJ4T");'>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold truncate">Davon M.</p>
+<p class="text-xs text-slate-500 dark:text-gray-400">@davon_moves • 4h ago</p>
+</div>
+<button class="text-slate-400 hover:text-slate-900 dark:hover:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="px-4 mb-4">
+<h2 class="text-lg font-bold leading-tight mb-1">How I fixed my sleep schedule 😴</h2>
+<div class="flex flex-wrap gap-2 text-primary text-sm font-medium">
+<span>#Lifestyle</span>
+<span>#Sleep</span>
+</div>
+</div>
+<div class="px-4 mb-4">
+<div class="bg-white dark:bg-surface-dark rounded-xl p-3 flex items-center gap-4 shadow-sm border border-gray-100 dark:border-white/5">
+<button class="flex-shrink-0 w-12 h-12 bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined filled" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-[3px] h-8 opacity-60">
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-3 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-4 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-7 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-5 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-2 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-6 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-3 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-4 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-2 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-5 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-3 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-4 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-2 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-4 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-2 rounded-full"></div>
+<div class="w-1 bg-slate-300 dark:bg-white/30 h-3 rounded-full"></div>
+</div>
+<span class="text-xs font-mono font-medium text-slate-500 dark:text-gray-400 whitespace-nowrap">3:20</span>
+</div>
+</div>
+<div class="flex px-4 gap-6">
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-pink-500 transition-colors">favorite</span>
+<span class="text-sm font-bold text-slate-500 dark:text-gray-400 group-hover:text-pink-500 transition-colors">89</span>
+</button>
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">chat_bubble</span>
+<span class="text-sm font-bold text-slate-500 dark:text-gray-400 group-hover:text-primary transition-colors">12</span>
+</button>
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-white transition-colors">ios_share</span>
+</button>
+</div>
+</article>
+<article class="relative flex flex-col border-b border-gray-200 dark:border-white/5 py-4">
+<div class="px-4 mb-2 flex items-center gap-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+                Suggested for you
+            </div>
+<div class="flex items-center gap-3 px-4 mb-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-10 w-10" data-alt="Abstract lotus flower logo on dark background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBSuk_1mmYjnmXtYswnNy7HgjYgv8TgAfpq9tgORPLNQ2j6Qn2rZqHEDutHdsjBgCSTkM_fW3-jKKFdtgqiOCVtTY6R10bytOTKXbGpBZiWvTbpGBF6scd-4qRzIEgamtevnTqH8GgG_f2krxvUQ_ehnJzniE7ebQNJTfGReg_-YgNi5mouJzsUQeRffqqhIXQ60mGi2HrfucavTapVA1jHB0mG26nsF1xF8_gz5aou7qCihzNA0J46a69tV6xaSUrEXyySXdghLNy-");'>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1">
+<p class="text-sm font-bold truncate">MindfulDaily</p>
+<span class="material-symbols-outlined text-[14px] text-blue-400 filled" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-gray-400">@mindful • 6h ago</p>
+</div>
+<button class="text-primary text-xs font-bold border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary hover:text-white transition-colors">
+                    Follow
+                </button>
+</div>
+<div class="px-4 mb-4">
+<h2 class="text-lg font-bold leading-tight mb-1">Quick breathwork session 🧘‍♀️</h2>
+<div class="flex flex-wrap gap-2 text-primary text-sm font-medium">
+<span>#Mindfulness</span>
+<span>#Anxiety</span>
+</div>
+</div>
+<div class="px-4 mb-4">
+<div class="bg-gradient-to-r from-surface-dark to-background-dark border border-white/10 rounded-xl p-0 overflow-hidden relative">
+<div class="absolute inset-0 opacity-20 bg-center bg-cover" data-alt="Calm yoga studio with soft lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmv1BvZEgYKRN9VGCATHEh5aA2gezNdfGiCvp2r9RATT2gnxopqzz2c3QpbsIboyh_0FhC9_6yJ6aUtVGDziTofBAb0IEk1Zc-OOhjpBOQobtxruF09fadzaJZzTS8cU57oiyyo-QGQKqnWKTD66-HAoqvlea3LZkciLDqKDUB6CrXe1w0zsLyEJRb354HvkeQ64lRgAJpbqTClck7hqSa-6NDb3WBqEV7hG5D_7dj9yVpyhTeYxzCmwqCWcF7jnDTB-iZ7Z_WrHAV");'></div>
+<div class="relative z-10 p-3 flex items-center gap-4">
+<button class="flex-shrink-0 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:scale-105 transition-transform shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined filled" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-[3px] h-8 opacity-90">
+<div class="w-1 bg-white h-3 rounded-full"></div>
+<div class="w-1 bg-white h-5 rounded-full"></div>
+<div class="w-1 bg-white h-2 rounded-full"></div>
+<div class="w-1 bg-white h-6 rounded-full"></div>
+<div class="w-1 bg-white h-4 rounded-full"></div>
+<div class="w-1 bg-white h-7 rounded-full"></div>
+<div class="w-1 bg-white h-3 rounded-full"></div>
+<div class="w-1 bg-white/30 h-4 rounded-full"></div>
+<div class="w-1 bg-white/30 h-2 rounded-full"></div>
+<div class="w-1 bg-white/30 h-5 rounded-full"></div>
+<div class="w-1 bg-white/30 h-3 rounded-full"></div>
+<div class="w-1 bg-white/30 h-4 rounded-full"></div>
+</div>
+<span class="text-xs font-mono font-bold text-white whitespace-nowrap">0:59</span>
+</div>
+</div>
+</div>
+<div class="flex px-4 gap-6">
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-pink-500 transition-colors">favorite</span>
+<span class="text-sm font-bold text-slate-500 dark:text-gray-400 group-hover:text-pink-500 transition-colors">1.2k</span>
+</button>
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">chat_bubble</span>
+<span class="text-sm font-bold text-slate-500 dark:text-gray-400 group-hover:text-primary transition-colors">86</span>
+</button>
+<button class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-white transition-colors">ios_share</span>
+</button>
+</div>
+</article>
+<div class="h-20 flex items-center justify-center">
+<div class="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+</div>
+</div>
+<nav class="fixed bottom-0 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-gray-200 dark:border-white/5 pb-6 pt-3 px-6 flex justify-between items-center z-30">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined filled text-[28px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold">Feed</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[28px]">explore</span>
+<span class="text-[10px] font-medium">Explore</span>
+</a>
+<a class="flex items-center justify-center -mt-6" href="#">
+<div class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-[0_0_20px_rgba(229,62,61,0.4)] hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</div>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[28px]">chat_bubble</span>
+<span class="text-[10px] font-medium">Chat</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[28px]">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</body></html>

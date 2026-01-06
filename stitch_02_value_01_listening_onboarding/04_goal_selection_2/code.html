@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Goal Selection - Wellness App</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface": "#1A2C20",
+                        "surface-highlight": "#23382c"
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased selection:bg-primary selection:text-background-dark">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden">
+<!-- Header Section -->
+<div class="flex items-center justify-between px-4 pt-6 pb-2">
+<!-- Back Button -->
+<button class="flex h-12 w-12 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 active:scale-95">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<!-- Page Indicator -->
+<div class="flex items-center gap-2">
+<!-- Step 1 (Completed) -->
+<div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+<!-- Step 2 (Completed) -->
+<div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+<!-- Step 3 (Completed) -->
+<div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+<!-- Step 4 (Current - Active Long Pill) -->
+<div class="h-1.5 w-8 rounded-full bg-white/90 shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
+</div>
+<!-- Spacer for visual balance with back button -->
+<div class="w-12"></div>
+</div>
+<!-- Main Scrollable Content -->
+<div class="flex flex-1 flex-col px-6 pt-4 pb-32"> <!-- pb-32 to account for fixed footer -->
+<!-- Headline -->
+<h1 class="text-3xl font-extrabold tracking-tight text-white leading-[1.2] mb-8">
+                What would you like to improve?
+            </h1>
+<!-- Goal Selection Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Card 1: Sleep (Active State Demo) -->
+<div class="group relative flex aspect-[4/3.5] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl p-5 transition-all duration-300 active:scale-95 ring-2 ring-primary bg-surface-highlight shadow-[0_4px_24px_rgba(43,238,108,0.1)]" data-alt="Abstract gradient representing sleep context">
+<!-- Background Gradient -->
+<div class="absolute inset-0 bg-gradient-to-br from-[#2bee6c]/10 to-transparent"></div>
+<!-- Checkmark Icon -->
+<div class="absolute top-4 right-4 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-background-dark shadow-sm z-10">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<!-- Content -->
+<div class="relative z-10 flex flex-col h-full justify-between">
+<span class="text-4xl filter drop-shadow-md">😴</span>
+<p class="font-bold text-white text-lg tracking-wide">Sleep</p>
+</div>
+</div>
+<!-- Card 2: Stress -->
+<div class="group relative flex aspect-[4/3.5] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl bg-surface border border-white/5 p-5 transition-all duration-300 hover:bg-surface-highlight hover:border-white/10 active:scale-95" data-alt="Dark abstract card for stress">
+<div class="relative z-10 flex flex-col h-full justify-between">
+<span class="text-4xl filter drop-shadow-md grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all">🧘</span>
+<p class="font-bold text-gray-300 group-hover:text-white text-lg tracking-wide transition-colors">Stress</p>
+</div>
+</div>
+<!-- Card 3: Energy -->
+<div class="group relative flex aspect-[4/3.5] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl bg-surface border border-white/5 p-5 transition-all duration-300 hover:bg-surface-highlight hover:border-white/10 active:scale-95" data-alt="Dark abstract card for energy">
+<div class="relative z-10 flex flex-col h-full justify-between">
+<span class="text-4xl filter drop-shadow-md grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all">💪</span>
+<p class="font-bold text-gray-300 group-hover:text-white text-lg tracking-wide transition-colors">Energy</p>
+</div>
+</div>
+<!-- Card 4: Lifestyle -->
+<div class="group relative flex aspect-[4/3.5] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl bg-surface border border-white/5 p-5 transition-all duration-300 hover:bg-surface-highlight hover:border-white/10 active:scale-95" data-alt="Dark abstract card for lifestyle">
+<div class="relative z-10 flex flex-col h-full justify-between">
+<span class="text-4xl filter drop-shadow-md grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all">🌿</span>
+<p class="font-bold text-gray-300 group-hover:text-white text-lg tracking-wide transition-colors">Lifestyle</p>
+</div>
+</div>
+<!-- Card 5: Mental Clarity -->
+<!-- Spanning full width on mobile for emphasis -->
+<div class="col-span-2 group relative flex aspect-[2.5/1] sm:aspect-[4/3.5] sm:col-span-1 cursor-pointer flex-row sm:flex-col items-center sm:items-start justify-between sm:justify-between overflow-hidden rounded-2xl bg-surface border border-white/5 p-5 transition-all duration-300 hover:bg-surface-highlight hover:border-white/10 active:scale-95" data-alt="Dark abstract card for mental clarity">
+<div class="relative z-10 flex flex-row sm:flex-col items-center sm:items-start w-full gap-4 sm:gap-0 h-full sm:justify-between">
+<span class="text-4xl filter drop-shadow-md grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all">🧠</span>
+<p class="font-bold text-gray-300 group-hover:text-white text-lg tracking-wide transition-colors">Mental clarity</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Fixed Footer Gradient Overlay -->
+<div class="pointer-events-none fixed bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background-dark via-background-dark/90 to-transparent z-10"></div>
+<!-- Fixed Bottom Action Area -->
+<div class="fixed bottom-0 left-0 right-0 z-20 flex flex-col items-center px-6 pb-8 pt-4">
+<!-- Caption -->
+<p class="text-sm font-medium text-[#9db9a6] mb-4">Select up to 3</p>
+<!-- Primary Action Button -->
+<!-- Note: Disabled state requested. Opacity and cursor styling applied. -->
+<button class="relative flex w-full items-center justify-center overflow-hidden rounded-full bg-primary px-6 py-4 text-base font-bold text-background-dark transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none hover:shadow-[0_0_20px_rgba(43,238,108,0.4)] hover:scale-[1.02] active:scale-[0.98]" disabled="">
+<span class="relative z-10">Continue</span>
+</button>
+</div>
+</div>
+</body></html>

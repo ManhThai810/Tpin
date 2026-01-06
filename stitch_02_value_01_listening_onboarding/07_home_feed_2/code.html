@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>07 Home Feed</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "card-dark": "#193322",
+                        "text-secondary": "#92c9a4"
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Waveform Animation Simulation */
+        @keyframes wave {
+            0%, 100% { height: 4px; }
+            50% { height: 16px; }
+        }
+        .animate-wave {
+            animation: wave 1.2s ease-in-out infinite;
+        }
+        .animate-wave-delayed {
+            animation: wave 1.2s ease-in-out 0.2s infinite;
+        }
+        .animate-wave-slow {
+            animation: wave 1.5s ease-in-out 0.4s infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-x-hidden pb-24">
+<!-- Header & Tabs -->
+<div class="sticky top-0 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-[#326744]">
+<div class="pt-4 px-4 pb-2">
+<div class="flex items-center justify-between mb-2">
+<h1 class="text-xl font-bold tracking-tight">Good Morning</h1>
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white">notifications</span>
+</button>
+</div>
+<div class="flex justify-between">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-white pb-3 flex-1 cursor-pointer hover:bg-white/5 transition-colors rounded-t-lg">
+<p class="text-white text-sm font-bold leading-normal tracking-[0.015em]">For You</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary pb-3 flex-1 cursor-pointer hover:bg-white/5 transition-colors rounded-t-lg hover:text-white">
+<p class="text-inherit text-sm font-bold leading-normal tracking-[0.015em]">Following</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary pb-3 flex-1 cursor-pointer hover:bg-white/5 transition-colors rounded-t-lg hover:text-white">
+<p class="text-inherit text-sm font-bold leading-normal tracking-[0.015em]">Topics</p>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Feed -->
+<main class="flex flex-col gap-4 p-4">
+<!-- Card 1: Morning Mindfulness -->
+<article class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.2)] bg-card-dark overflow-hidden group">
+<div class="relative w-full aspect-[2/1] sm:aspect-[21/9] bg-cover bg-center" data-alt="Peaceful morning sunrise over a foggy forest landscape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7ZjMM7HjKZcwEl8FNSTZlCy9TpvWCDfzVnM5FVKnc5zMdGqLFTdyeafbgmqOvpGFWW2NSvuPvcjSFHAtMMZGfa0gObxoB8MXVbO8xdVzKRL6DfRCWgCkoi985zYwiTVTP0DH0pBGehvBME6KhpAJqzS93ALB1y5j7unnE4th2byqaz0UU_9OR-TUyqyVu8S1ret4WCCJP7nctBr4mk49uKt21c3AdaesJF4FHCIW9pjM3lD6WglWKjmGimTRZNLJnyKHz97ZDILfC");'>
+<div class="absolute inset-0 bg-gradient-to-t from-card-dark to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-full bg-cover bg-center border border-white/20" data-alt="Portrait of Sarah Wellness" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCD6O4KzzV4_9h2Z-QVJAebxJUT7aTSkla_wen15B_z4tOSjU1Yd7lbXWohFRLRx7TQC0fqRV4yiSeiYXhpnz0UfHx_Ws7RkC6YZiOVTXmmDKI0TFqQkdy8ySHv1Vv47huW6vevd8gp5F59-SL20wkH3OD0o786mcU6moNm99yGXBPqlVt2zq4KuEOGX1EzIcPad6Y-wDBvbQS4BZOHmvNTAY54vnCsq5qh_PYknh06eXwk2FeKZQ4ZjjpRMFU7JGpHTjYvB2ovTQox");'></div>
+<div>
+<p class="text-white text-sm font-bold leading-tight">Morning Mindfulness</p>
+<p class="text-text-secondary text-xs">@SarahWellness</p>
+</div>
+</div>
+<span class="bg-black/40 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-white">2m</span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<!-- Waveform Player -->
+<div class="flex items-center gap-3">
+<button class="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-primary text-background-dark hover:scale-105 transition-transform">
+<span class="material-symbols-outlined fill-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div class="flex-grow h-8 flex items-center gap-1 opacity-80">
+<!-- Static fake waveform -->
+<div class="w-1 bg-primary/50 h-3 rounded-full"></div>
+<div class="w-1 bg-primary/70 h-5 rounded-full"></div>
+<div class="w-1 bg-primary h-8 rounded-full"></div>
+<div class="w-1 bg-primary h-4 rounded-full"></div>
+<div class="w-1 bg-primary/80 h-6 rounded-full"></div>
+<div class="w-1 bg-primary/60 h-3 rounded-full"></div>
+<div class="w-1 bg-primary/40 h-2 rounded-full"></div>
+<div class="w-1 bg-white/20 h-4 rounded-full"></div>
+<div class="w-1 bg-white/20 h-2 rounded-full"></div>
+<div class="w-1 bg-white/20 h-5 rounded-full"></div>
+<div class="w-1 bg-white/20 h-3 rounded-full"></div>
+<div class="w-1 bg-white/20 h-6 rounded-full"></div>
+<div class="w-1 bg-white/20 h-2 rounded-full"></div>
+<div class="w-1 bg-white/20 h-4 rounded-full"></div>
+<div class="w-1 bg-white/20 h-2 rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-white/5 pt-3 mt-1">
+<div class="flex gap-2">
+<span class="text-text-secondary text-xs font-medium bg-white/5 px-2 py-1 rounded-md">#Meditation</span>
+<span class="text-text-secondary text-xs font-medium bg-white/5 px-2 py-1 rounded-md">#MorningRoutine</span>
+</div>
+<div class="flex items-center gap-3 text-text-secondary">
+<button class="flex items-center gap-1 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+<span class="text-xs">240</span>
+</button>
+<button class="flex items-center gap-1 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span class="text-xs">18</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2: Better Sleep -->
+<article class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.2)] bg-card-dark overflow-hidden group">
+<div class="p-4 flex gap-4">
+<div class="w-24 h-24 flex-shrink-0 bg-cover bg-center rounded-lg relative" data-alt="Cozy bedroom with soft lighting suitable for sleeping" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0uGLb31Vjeat702KLyZpXaFLB8wGIXihfZy948XGJuF4WDPkdaxx7u6eM0styZRlUXce2tZ_NYIz0qEy1JV8lEXoyV_Bpbf1-mMKVJOPZjwLwRpOxCraPokw5J6pjzhK19lMsI3f4OoNTT-Cw9aD9MjCqk3FaffIpnr1b5DSvPQ5M5UmcnkRXiKTlfZ5N50Mhd8sRXpGQrEKpk_Gn39ZEoDlKDREKcf-3t6mjTwHj8itxBmktm19kIrhrBkSq95QmdILPjdjjmicc");'>
+<div class="absolute inset-0 bg-black/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white">graphic_eq</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow justify-between py-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Tips for better sleep</h3>
+<span class="text-text-secondary text-xs">1h ago</span>
+</div>
+<p class="text-text-secondary text-sm mt-1">@SleepDoctor</p>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<button class="bg-primary/20 text-primary hover:bg-primary hover:text-background-dark transition-colors h-8 px-3 rounded-lg flex items-center gap-1 text-sm font-medium">
+<span class="material-symbols-outlined text-[18px] fill-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                            Play • 5m
+                        </button>
+<button class="h-8 w-8 flex items-center justify-center rounded-lg border border-white/10 text-text-secondary hover:text-white hover:bg-white/5">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3: Weekly Gratitude -->
+<article class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.2)] bg-card-dark overflow-hidden">
+<div class="relative p-4">
+<!-- User Header -->
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<div class="h-10 w-10 rounded-full bg-cover bg-center border border-white/10" data-alt="Portrait of Daily Gratitude User" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4qOWUsIwyVK1ACHH9FXckz4p_DS5Qf-wZkxAmicpBMvHt73EIjZEtVrjqIhi0xu_a6AmkcWC7Mktegt-6_etkogE7V-nxRuAfuNVjf-S2CgBGCVEBDeCrSf7zlnnVIgaz5MczNoX5Q2OdXmVXQv1YDfTX0qusgmWNMNv8bd-t9CmlkZ7Ci1RhRmyrBe2J69DkXDazFCLkBEHWMND7c4fmNMTjYsfREXHIFAh6c0hVUE8rmk-c9p4VXGgszAkym2JH9wLcuF5FrWSK");'></div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-bold">@DailyGratitude</p>
+<p class="text-text-secondary text-xs">3h ago</p>
+</div>
+</div>
+<button class="text-text-secondary hover:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Content Body -->
+<p class="text-white text-lg font-bold mb-4">My weekly gratitude journal &amp; reflections</p>
+<!-- Custom Audio Player Visual -->
+<div class="bg-black/20 rounded-xl p-3 flex items-center gap-3">
+<button class="h-10 w-10 rounded-full bg-white text-background-dark flex items-center justify-center hover:bg-primary transition-colors">
+<span class="material-symbols-outlined fill-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<!-- Dynamic looking bars -->
+<div class="flex-1 flex items-center justify-between h-8 px-2 gap-[2px]">
+<!-- Generating a bunch of bars for visual flair -->
+<div class="w-1 bg-primary rounded-full animate-wave"></div>
+<div class="w-1 bg-primary rounded-full animate-wave-delayed" style="height: 12px;"></div>
+<div class="w-1 bg-primary rounded-full animate-wave-slow" style="height: 20px;"></div>
+<div class="w-1 bg-primary rounded-full animate-wave" style="height: 10px;"></div>
+<div class="w-1 bg-primary rounded-full animate-wave-delayed" style="height: 24px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 14px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 8px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 18px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 12px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 6px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 16px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 22px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 10px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 14px;"></div>
+<div class="w-1 bg-white/20 rounded-full" style="height: 8px;"></div>
+</div>
+<span class="text-xs text-text-secondary font-mono">0:42 / 1:00</span>
+</div>
+<div class="flex gap-2 mt-4">
+<span class="text-text-secondary text-xs bg-white/5 px-2 py-1 rounded-md">#Gratitude</span>
+<span class="text-text-secondary text-xs bg-white/5 px-2 py-1 rounded-md">#Journaling</span>
+</div>
+</div>
+</article>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 border-t border-[#23482f] bg-[#193322]/90 backdrop-blur-lg px-4 pb-6 pt-2">
+<div class="flex justify-between items-end">
+<!-- Feed (Active) -->
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-white group cursor-pointer" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:text-primary transition-colors fill-1" style="font-variation-settings: 'FILL' 1;">home</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em] text-primary">Feed</p>
+</a>
+<!-- Explore -->
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-text-secondary hover:text-white transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined text-[26px]">search</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Explore</p>
+</a>
+<!-- Post (Center, Emphasized) -->
+<div class="flex flex-1 flex-col items-center justify-end -mt-6 cursor-pointer">
+<button class="h-14 w-14 rounded-full bg-primary flex items-center justify-center shadow-[0_0_15px_rgba(43,238,108,0.4)] hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-background-dark text-[32px]">mic</span>
+</button>
+<p class="text-text-secondary text-xs font-medium leading-normal tracking-[0.015em] mt-1">Post</p>
+</div>
+<!-- Chat -->
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-text-secondary hover:text-white transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined text-[26px]">chat_bubble_outline</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Chat</p>
+</a>
+<!-- Profile -->
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-text-secondary hover:text-white transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined text-[26px]">person</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Profile</p>
+</a>
+</div>
+</nav>
+</body></html>

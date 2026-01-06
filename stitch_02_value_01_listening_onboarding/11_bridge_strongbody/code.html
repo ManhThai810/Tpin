@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>11 Bridge Strongbody</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1A2C20", // Slightly lighter for contrast
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col justify-between overflow-x-hidden">
+<!-- Main Content Area -->
+<div class="flex flex-col w-full">
+<!-- Top Navigation / Header -->
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 z-10">
+<button class="text-gray-900 dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-[32px]">keyboard_arrow_down</span>
+</button>
+</div>
+<!-- Hero Illustration -->
+<div class="flex flex-col gap-6 px-4 pt-4 pb-8">
+<!-- Illustration Placeholder -->
+<div class="w-full aspect-[4/3] bg-surface-dark rounded-xl overflow-hidden relative shadow-2xl shadow-primary/5">
+<!-- Placeholder Image using gradient and abstract pattern -->
+<div class="absolute inset-0 bg-cover bg-center opacity-90" data-alt="Abstract green 3D geometric shapes floating in dark space representing connection" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZD_rYdc-5z_LDQgIHRLyPNkfspKtH8jsyuQiyB8mtvXYIQcTtrPCF_WW3eS6Vzd0H0Xc5pumhBr2eb0oq76HR1LaXmsZs0yWMqfz7eIrIEO6pGvHGbYnPUxM-yjZ75-gS3ZYih-mCk6p5DKHlIcgxi-zpFQJY6HM93anbOMSiLGq_6Eh4yb1c8d7h5UpD8ZpZ5xIaMoML93roPEOjjyCxOyV-DrIY-BfmZrHLsgyB1XAzwSZmhP-Wl--YLxvYJtOHTeT_MXRZlpny');">
+</div>
+<!-- Overlay gradient for better text integration if needed later -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent"></div>
+</div>
+</div>
+<!-- Headline -->
+<div class="px-6 pb-2">
+<h2 class="text-gray-900 dark:text-white tracking-tight text-[32px] font-bold leading-[1.15] text-center">
+                    Go deeper with this expert?
+                </h2>
+</div>
+<!-- Benefits List -->
+<!-- Modified checklist component to be static benefits list -->
+<div class="px-8 py-6 flex flex-col items-center">
+<div class="flex flex-col gap-y-5 w-full max-w-xs">
+<div class="flex gap-x-4 items-center flex-row group">
+<div class="flex items-center justify-center size-6 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[18px] font-bold">check</span>
+</div>
+<p class="text-gray-700 dark:text-gray-200 text-lg font-medium leading-normal">
+                            Private 1:1 session
+                        </p>
+</div>
+<div class="flex gap-x-4 items-center flex-row group">
+<div class="flex items-center justify-center size-6 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[18px] font-bold">check</span>
+</div>
+<p class="text-gray-700 dark:text-gray-200 text-lg font-medium leading-normal">
+                            Personalized guidance
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Actions -->
+<!-- Pushed to bottom using flex-col justify-between on parent -->
+<div class="w-full bg-background-light dark:bg-background-dark p-4 pb-8 space-y-3">
+<!-- Primary Action -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-primary hover:bg-[#25d360] transition-colors text-background-dark text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20">
+<span class="truncate">Book on Strongbody</span>
+</button>
+<!-- Secondary Action -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-transparent text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-base font-medium leading-normal">
+<span class="truncate">Continue listening</span>
+</button>
+</div>
+</div>
+</body></html>

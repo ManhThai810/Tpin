@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Explore Experts</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1c2e21", // Slightly lighter than background-dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        .waveform-bar {
+            animation: wave 1.2s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { height: 8px; }
+            50% { height: 16px; }
+        }
+        .waveform-bar:nth-child(2) { animation-delay: 0.1s; }
+        .waveform-bar:nth-child(3) { animation-delay: 0.2s; }
+        .waveform-bar:nth-child(4) { animation-delay: 0.3s; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<!-- Header -->
+<header class="sticky top-0 z-30 flex items-center justify-between bg-background-light/90 dark:bg-background-dark/90 px-4 pt-12 pb-4 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<button class="flex size-10 items-center justify-center rounded-full bg-transparent active:bg-white/10">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-2xl font-bold tracking-tight">Explore Experts</h2>
+</div>
+<button class="flex size-10 items-center justify-center rounded-full bg-transparent active:bg-white/10">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+</header>
+<!-- Filter Chips -->
+<div class="w-full overflow-x-auto no-scrollbar pl-4 pb-6 pt-2">
+<div class="flex gap-3 pr-4">
+<button class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-primary px-6 transition-transform active:scale-95">
+<span class="text-background-dark text-sm font-bold">All</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-surface-dark border border-white/5 px-6 transition-transform active:scale-95 hover:bg-white/5">
+<span class="text-white/80 text-sm font-medium">Sleep</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-surface-dark border border-white/5 px-6 transition-transform active:scale-95 hover:bg-white/5">
+<span class="text-white/80 text-sm font-medium">Stress</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-surface-dark border border-white/5 px-6 transition-transform active:scale-95 hover:bg-white/5">
+<span class="text-white/80 text-sm font-medium">Fitness</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center rounded-xl bg-surface-dark border border-white/5 px-6 transition-transform active:scale-95 hover:bg-white/5">
+<span class="text-white/80 text-sm font-medium">Nutrition</span>
+</button>
+</div>
+</div>
+<!-- Experts Content -->
+<main class="flex flex-col gap-6 px-4">
+<!-- Card 1: Live Now -->
+<article class="@container">
+<div class="flex flex-col overflow-hidden rounded-2xl bg-surface-dark shadow-lg ring-1 ring-white/5">
+<div class="relative h-48 w-full bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Professional portrait of Dr. Sarah Jenks smiling warmly" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAf7a9iGO6RCzeD5FwbcsmmZ7SPvSGyVoDG-sWzpDxNc2Fm3rYD6Or0TGknwIz9HdZ1Gy9H74LVmtNb_HLRbFI59gUstI9MA_p0F5ER0tV_o6R_Z30yoAQL_tseCe8n6gU3DT3ysXT5eyCPLhCjLx2sJ5VIGEh6-07Wpq7KTP53n1AeyJnJDFeHHtcPdeeuOkmYu7d6-vh_jMDQXSNWDyIxXQ1bAsU9BToRUbLNbJz1slPC8tnTx8GblB_XGrVfaT8COAb7n1ATUHaL");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark to-transparent opacity-80"></div>
+<!-- Live Badge -->
+<div class="absolute top-4 left-4 flex items-center gap-2 rounded-lg bg-red-500/20 px-3 py-1 backdrop-blur-sm border border-red-500/30">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+</span>
+<span class="text-xs font-bold text-red-100 uppercase tracking-wider">Live Now</span>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-5 -mt-6 relative z-10">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xl font-bold text-white leading-tight">Dr. Sarah Jenks</h3>
+<p class="text-primary text-sm font-medium mt-1">Sleep Specialist</p>
+</div>
+<!-- Voice visual hint -->
+<div class="flex items-end gap-0.5 h-6">
+<div class="w-1 bg-primary/60 rounded-full h-3"></div>
+<div class="w-1 bg-primary rounded-full h-6 animate-pulse"></div>
+<div class="w-1 bg-primary/80 rounded-full h-4"></div>
+<div class="w-1 bg-primary/40 rounded-full h-2"></div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="rounded-md bg-white/5 px-2.5 py-1">
+<span class="text-xs font-medium text-gray-300">#InsomniaHelp</span>
+</div>
+<div class="rounded-md bg-white/5 px-2.5 py-1">
+<span class="text-xs font-medium text-gray-300">#RestfulSleep</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-4 mt-1">
+<div class="flex -space-x-2">
+<img class="inline-block h-8 w-8 rounded-full ring-2 ring-surface-dark" data-alt="Avatar of user listening" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtz1St5R51esXq-ryEdIsBLU8ljLF9xgUV72BQlscNrJDpqivNMJXC8lZQlPTH0e67rk6VIRs97Ih67jGEh2C5PtS-Ud6Q5xlftM3yH-T7obOIzp6R_NK5ALzoNlCfY9HSMKhF9fdThQIaxSTyiemWaGOan0M06LgrBm8f1iiUUpCYAMZh1s-mgR2ZC5VbAspXoJZkTM_Ss_F8bVf9df-gr7XI2LPTjYn-0CUkE4UHq6PtvuWQAiPoSzjfQxt2kVkMW5othXnVuiOr"/>
+<img class="inline-block h-8 w-8 rounded-full ring-2 ring-surface-dark" data-alt="Avatar of user listening" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSNDbBoT1i0EdnZu2zm08mzPqqQol1vOVGCU3-gext0kPLo00xhUBmsoYj3HaNBWfDZeyhBT1o-X2Pt2748kTnBVMF38fPrxcbiqnH4l83Mtim1tl1Vv6ZeCGqcj91-2E759LdsWyyJEKq48dPChTWOo-oiwSTvnSbv5J9cVopw89lRh2x8eF0Vm9T_vOOqsrxz2ncjwOUxQrag4NyG43lGI4TdV8GKRfMU87jdOCiKppeu3plIFNajcH5BJk4hy14vhaLTQk9XpC5"/>
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-700 ring-2 ring-surface-dark text-[10px] font-bold text-white">+124</div>
+</div>
+<button class="flex-1 h-11 items-center justify-center rounded-xl bg-primary text-background-dark font-bold text-sm shadow-[0_0_15px_rgba(43,238,108,0.3)] transition-all active:scale-95 hover:bg-[#1fd660]">
+                                Join Room
+                            </button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2: Voice Intro -->
+<article class="@container">
+<div class="flex flex-col overflow-hidden rounded-2xl bg-surface-dark shadow-lg ring-1 ring-white/5">
+<div class="relative h-48 w-full bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Professional portrait of Marcus Thorne in a suit" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAsz2ONMHsYenRV8QxjTpAGeilwX0AxuQ4ckDRavDqccVYCxl8erc66FBGuDxyusQrQER72PScxWK53EMfQB0VpeYGq-rtuyxweJpTUPr8-ZNeLo6tAzRF08lMPRf36HFTcl8XEDjK73IqxGFZ2R9l5YmakdSOYB-Ak-xipt1Dy8uZf889Zxmp0L7FfOlwcyFJqsWst_W_r5Efs9gvw309QpMvScqlgUUWa8sq4nMo0KBrzLDz0tM0YwU4ECDS_2aJ8cbiuCvDE5TQC");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark to-transparent opacity-90"></div>
+<div class="absolute bottom-4 left-5 right-5">
+<div class="flex items-center gap-3">
+<button class="flex size-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white hover:bg-primary hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined filled">play_arrow</span>
+</button>
+<div class="flex flex-1 items-center gap-1 h-8 opacity-70">
+<div class="w-1 bg-white rounded-full h-3"></div>
+<div class="w-1 bg-white rounded-full h-5"></div>
+<div class="w-1 bg-white rounded-full h-8"></div>
+<div class="w-1 bg-white rounded-full h-4"></div>
+<div class="w-1 bg-white rounded-full h-6"></div>
+<div class="w-1 bg-white rounded-full h-3"></div>
+<div class="w-1 bg-white rounded-full h-2"></div>
+<div class="w-1 bg-white rounded-full h-5"></div>
+<div class="w-1 bg-white rounded-full h-3"></div>
+<div class="w-1 bg-white rounded-full h-4"></div>
+</div>
+<span class="text-xs font-medium text-white/70">0:45</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 p-5 pt-2">
+<div>
+<p class="text-gray-400 text-xs font-bold uppercase tracking-wider mb-1">Stress Management</p>
+<h3 class="text-xl font-bold text-white leading-tight">Marcus Thorne</h3>
+<p class="text-gray-300 text-sm mt-0.5">High Performance Coach</p>
+</div>
+<div class="flex gap-2 flex-wrap">
+<span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">#BurnoutPrevention</span>
+<span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">#ExecutiveWellness</span>
+</div>
+<button class="mt-2 flex w-full h-11 items-center justify-center rounded-xl border border-primary/30 bg-primary/5 text-primary font-bold text-sm transition-all active:scale-95 hover:bg-primary/10">
+                            Listen to Intro
+                        </button>
+</div>
+</div>
+</article>
+<!-- Card 3: Schedule -->
+<article class="@container">
+<div class="flex flex-col overflow-hidden rounded-2xl bg-surface-dark shadow-lg ring-1 ring-white/5">
+<div class="flex flex-row p-4 gap-4 items-center">
+<div class="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-gray-800">
+<div class="h-full w-full bg-cover bg-center" data-alt="Portrait of Elena Rodriguez in yoga attire" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJzC1jyan-b0tpWI49q6VT7I77kpwhoc9DvN1hZMOtLe-3Rsesd4_rto6kceQaNThtW3Sn57LDC9CA005LExL1V-_W5jxtlw1cpbYfyI65jLGVcB2H3cYWo6FVZEHh0qjJfGLUAHZq9uHn4uKyWl7slWTpaNUXMQ8Fj26SY2qzz-5OkMzcXcVVaiB9ZNwF_4a1NXvYN0BuPleTl9ybttVPSwSgwm08RvTOHmdLdusBet1lBQ9Fp_PwpGNZ1-v1bq7AyQ4utpGqaLXz");'></div>
+</div>
+<div class="flex flex-col flex-1 justify-center">
+<div class="flex items-center justify-between">
+<p class="text-primary text-xs font-bold uppercase tracking-wider">Fitness &amp; Mobility</p>
+<div class="flex items-center text-yellow-500 gap-1">
+<span class="material-symbols-outlined text-[16px] filled">star</span>
+<span class="text-xs font-bold text-white">4.9</span>
+</div>
+</div>
+<h3 class="text-lg font-bold text-white leading-tight mt-1">Elena Rodriguez</h3>
+<p class="text-gray-400 text-sm">Yoga Instructor</p>
+<button class="mt-3 flex h-9 w-fit items-center justify-center rounded-lg bg-white text-background-dark px-4 font-bold text-xs transition-all active:scale-95">
+                                Schedule
+                            </button>
+</div>
+</div>
+</div>
+</article>
+<!-- Spacer for bottom nav -->
+<div class="h-6"></div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 z-40 border-t border-white/5 bg-background-dark/95 pb-6 pt-3 backdrop-blur-lg">
+<div class="flex items-center justify-around px-2">
+<a class="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+<span class="material-symbols-outlined text-2xl filled">explore</span>
+<span class="text-[10px] font-bold">Discover</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-white transition-colors" href="#">
+<!-- Graphic EQ represents Voice Rooms -->
+<span class="material-symbols-outlined text-2xl">graphic_eq</span>
+<span class="text-[10px] font-medium">Rooms</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>
