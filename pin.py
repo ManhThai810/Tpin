@@ -359,7 +359,7 @@ def run_pinterest_auto(so_lan):
                 
                 # Click nút đăng
                 click_post_button(driver)
-                time.sleep(2)
+                time.sleep(3)  # Đợi 3 giây để load comment
                 
                 # Lưu pin vào danh sách đã comment
                 commented_pins.add(pin_url)
@@ -368,35 +368,51 @@ def run_pinterest_auto(so_lan):
                 # Chụp ảnh bằng chứng
                 safe_screenshot(driver, f"pinterest_comment_{success_count}.png")
                 
-                # === KIỂM TRA HOẠT ĐỘNG ĐÁNG NGỜ ===
+                # === KIỂM TRA CẢNH BÁO ĐỎ (hoạt động đáng ngờ) ===
                 try:
-                    page_text = driver.page_source.lower()
-                    suspicious_keywords = [
-                        "suspicious activity",
-                        "hoạt động đáng ngờ",
-                        "unusual activity", 
-                        "blocked",
-                        "suspended",
-                        "verify your account",
-                        "xác minh tài khoản",
-                        "temporarily locked",
-                        "tạm khóa",
-                        "captcha",
+                    # Tìm element cảnh báo đỏ ở dưới màn hình
+                    red_warning_selectors = [
+                        "[class*='error']",
+                        "[class*='warning']",
+                        "[class*='alert']",
+                        "[style*='red']",
+                        "[style*='#ff']",
+                        "[data-test-id*='error']",
+                        "[data-test-id*='warning']",
+                        ".Eqh.czT.iyn.Kv5.S9z.QLY.zDA.IZT.swG",  # Pinterest error class
                     ]
                     
-                    for keyword in suspicious_keywords:
-                        if keyword in page_text:
-                            print("\n" + "!"*60)
-                            print("   ⚠️  PHÁT HIỆN HOẠT ĐỘNG ĐÁNG NGỜ!")
-                            print("!"*60)
-                            safe_screenshot(driver, f"suspicious_activity_{success_count}.png")
-                            print("\n[ACTION] Pinterest có thể đã khóa tạm thời.")
-                            print("[ACTION] Vui lòng:")
-                            print("         1. ĐĂNG XUẤT tài khoản hiện tại")
-                            print("         2. ĐĂNG NHẬP tài khoản khác")
-                            print("         3. Nhấn ENTER để tiếp tục")
-                            input("\n>>> Nhấn ENTER sau khi đã đổi tài khoản: ")
+                    found_warning = False
+                    for selector in red_warning_selectors:
+                        try:
+                            warnings = driver.find_elements(By.CSS_SELECTOR, selector)
+                            for warn in warnings:
+                                if warn.is_displayed():
+                                    # Kiểm tra có phải màu đỏ không
+                                    bg_color = warn.value_of_css_property("background-color")
+                                    text_color = warn.value_of_css_property("color")
+                                    
+                                    # Nếu có màu đỏ (RGB có R cao)
+                                    if "255" in bg_color or "red" in bg_color.lower() or \
+                                       "255" in text_color or "red" in text_color.lower():
+                                        found_warning = True
+                                        break
+                        except:
+                            continue
+                        if found_warning:
                             break
+                    
+                    if found_warning:
+                        print("\n" + "!"*60)
+                        print("   ⚠️  PHÁT HIỆN CẢNH BÁO ĐỎ - HOẠT ĐỘNG ĐÁNG NGỜ!")
+                        print("!"*60)
+                        safe_screenshot(driver, f"suspicious_activity_{success_count}.png")
+                        print("\n[ACTION] Pinterest phát hiện hoạt động đáng ngờ.")
+                        print("[ACTION] Vui lòng:")
+                        print("         1. ĐĂNG XUẤT tài khoản hiện tại")
+                        print("         2. ĐĂNG NHẬP tài khoản khác")
+                        print("         3. Nhấn ENTER để tiếp tục")
+                        input("\n>>> Nhấn ENTER sau khi đã đổi tài khoản: ")
                 except:
                     pass
                 
