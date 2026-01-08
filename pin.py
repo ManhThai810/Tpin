@@ -1,6 +1,7 @@
 import time
 import random
 import pyautogui
+import pyperclip
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -19,12 +20,15 @@ pyautogui.FAILSAFE = False
 COCCOC_PATH = r"C:\Users\manhd\AppData\Local\CocCoc\Browser\Application\browser.exe"
 
 # Từ khóa tìm kiếm trên Pinterest
-TU_KHOA = "Herbal hair oil"
+TU_KHOA = "Anti-hair fall shampoo"
 
 # Nội dung comment (đã bỏ ký tự đặc biệt để tránh lỗi nhập)
-NOI_DUNG_GOC = """I represent StrongBody AI Provider Shop Platform - a global marketplace system.
-You can build your own shop for health and medical products or services today.
-International payments, personal profile, and a professional storefront - all for 15 USD per month."""
+NOI_DUNG_GOC = """Hello, I’m from StrongBody(.AI), the Product Shop BD team.
+Are you a professional or vendor in the health or medical field?
+Now you can launch your global shop instantly – no developers, no web design.
+Everything’s ready. Just $15/month to start selling worldwide.
+https://strongbody.ai/become-seller
+"""
 
 # Số lượng pin cần comment
 SO_LAN = 5
@@ -93,7 +97,7 @@ def find_and_click(driver, selectors, timeout=10, description="element"):
     return False
 
 def enter_comment(driver, text):
-    """Nhập comment vào ô textarea"""
+    """Nhập comment vào ô textarea sử dụng clipboard paste"""
     print("[*] Đang tìm ô nhập comment...")
     
     # Các selector có thể là ô comment
@@ -112,47 +116,52 @@ def enter_comment(driver, text):
             comment_box = driver.find_element(By.CSS_SELECTOR, selector)
             if comment_box.is_displayed():
                 # Click vào ô comment
-                actions = ActionChains(driver)
-                actions.move_to_element(comment_box).click().perform()
+                driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", comment_box)
+                time.sleep(0.3)
+                comment_box.click()
                 time.sleep(0.5)
                 
-                # Nhập nội dung
-                comment_box.clear()
-                comment_box.send_keys(text)
+                # Xóa nội dung cũ nếu có
+                comment_box.send_keys(Keys.CONTROL + "a")
+                time.sleep(0.1)
+                
+                # Copy text vào clipboard và paste
+                pyperclip.copy(text)
+                comment_box.send_keys(Keys.CONTROL + "v")
+                time.sleep(0.3)
+                
                 print("[OK] Đã nhập comment")
                 return True
         except:
             continue
     
-    # Fallback: JavaScript
+    # Fallback: Tìm bằng JavaScript và dùng pyautogui paste
     try:
         result = driver.execute_script("""
-            var text = arguments[0];
             var inputs = document.querySelectorAll('textarea, [contenteditable="true"]');
             for (var i = 0; i < inputs.length; i++) {
                 if (inputs[i].offsetParent !== null) {
                     inputs[i].focus();
-                    inputs[i].value = text;
-                    inputs[i].innerText = text;
-                    inputs[i].dispatchEvent(new Event('input', {bubbles: true}));
-                    return 'success';
+                    inputs[i].click();
+                    return 'found';
                 }
             }
             return 'not_found';
-        """, text)
+        """)
         
-        if result == 'success':
-            print("[OK] Đã nhập comment (JavaScript)")
+        if result == 'found':
+            time.sleep(0.3)
+            pyperclip.copy(text)
+            pyautogui.hotkey('ctrl', 'v')
+            time.sleep(0.3)
+            print("[OK] Đã nhập comment (pyautogui)")
             return True
     except:
         pass
     
-    # Fallback cuối: Yêu cầu user nhập thủ công
-    print("[WARNING] Không thể tự động nhập comment.")
-    print(f"[ACTION] Vui lòng nhập nội dung sau vào ô comment:")
-    print(f"        \"{text[:80]}...\"")
-    input(">>> Nhấn ENTER sau khi đã nhập: ")
-    return True
+    # Không tìm thấy ô comment
+    print("[WARNING] Không tìm thấy ô nhập comment trong pin này.")
+    return False
 
 def click_post_button(driver):
     """Click nút đăng comment"""
@@ -353,13 +362,26 @@ def run_pinterest_auto(so_lan):
                     pin_title = "Unknown"
                 
                 # Nhập comment
-                comment_text = f"{NOI_DUNG_GOC} ({random.randint(100, 999)})"
-                enter_comment(driver, comment_text)
+                comment_text = NOI_DUNG_GOC
+                comment_result = enter_comment(driver, comment_text)
+                
+                # Nếu không tìm thấy ô comment, bỏ qua pin này và tìm pin khác
+                if not comment_result:
+                    print("[SKIP] Không có ô comment, chuyển sang pin khác...")
+                    try:
+                        close_btn = driver.find_element(By.CSS_SELECTOR, "button[aria-label='Close'], button[aria-label='Đóng'], [data-test-id='closeup-close-button']")
+                        close_btn.click()
+                    except:
+                        driver.back()
+                    time.sleep(2)
+                    pin_index += 1
+                    continue
+                
                 time.sleep(1)
                 
                 # Click nút đăng
                 click_post_button(driver)
-                time.sleep(3)  # Đợi 3 giây để load comment
+                time.sleep(6)  # Đợi 6 giây trước khi chụp màn hình
                 
                 # Lưu pin vào danh sách đã comment
                 commented_pins.add(pin_url)
