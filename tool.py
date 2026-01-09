@@ -41,7 +41,7 @@ def wait_for_user_login(driver):
     print("\n" + "="*60)
     print("   ⚠️  CẦN ĐĂNG NHẬP GOOGLE THỦ CÔNG!")
     print("="*60)
-    print("\n[ACTION] Vui lòng đăng nhập Google trong cửa sổ Chrome.")
+    print("\n[ACTION] Vui lòng đăng nhập Google trong cửa sổ Cốc Cốc.")
     print("[*] Sau khi đăng nhập xong, nhấn ENTER tại đây để tiếp tục...")
     print("")
     input(">>> Nhấn ENTER khi đã đăng nhập xong: ")
@@ -252,10 +252,11 @@ def enter_review_text(driver, text):
     return True
 
 def run_auto_review(so_lan):
-    # === KHỞI TẠO CHROME ===
-    print("\n[STEP 1] Khởi động Chrome...")
+    # === KHỞI TẠO CỐC CỐC ===
+    print("\n[STEP 1] Khởi động Cốc Cốc...")
     options = webdriver.ChromeOptions()
-    options.add_argument(r"--user-data-dir=C:\Users\manhd\AppData\Local\Google\Chrome\SeleniumProfile")
+    options.binary_location = r"C:\Users\manhd\AppData\Local\CocCoc\Browser\Application\browser.exe"
+    options.add_argument(r"--user-data-dir=C:\Users\manhd\AppData\Local\CocCoc\Browser\User Data\SeleniumProfile")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
@@ -268,7 +269,7 @@ def run_auto_review(so_lan):
     try:
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     except Exception as e:
-        print(f"[ERROR] Không thể khởi động Chrome: {e}")
+        print(f"[ERROR] Không thể khởi động Cốc Cốc: {e}")
         return
     
     wait = WebDriverWait(driver, 30)
@@ -478,7 +479,7 @@ def run_auto_review(so_lan):
         print("   HOÀN TẤT SCRIPT")
         print("="*50)
         if is_driver_alive(driver):
-            input("\n>>> Nhấn ENTER để đóng Chrome: ")
+            input("\n>>> Nhấn ENTER để đóng Cốc Cốc: ")
             driver.quit()
 
 if __name__ == "__main__":

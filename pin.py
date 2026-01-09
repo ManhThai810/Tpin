@@ -19,16 +19,39 @@ pyautogui.FAILSAFE = False
 # Đường dẫn Cốc Cốc
 COCCOC_PATH = r"C:\Users\manhd\AppData\Local\CocCoc\Browser\Application\browser.exe"
 
-# Từ khóa tìm kiếm trên Pinterest
-TU_KHOA = "Anti-hair fall shampoo"
+# Danh sách từ khóa tìm kiếm trên Pinterest
+DANH_SACH_TU_KHOA = [
+    "biotin hair growth capsules",
+    "herbal anti-hair loss tonic",
+    "caffeine scalp serum",
+    "collagen hair renewal supplement",
+    "keratin repair shampoo",
+    "essential oil scalp treatment",
+    "argan oil conditioner",
+    "saw palmetto DHT blocker capsules",
+    "pumpkin seed oil softgels",
+    "bamboo silica beauty tablets",
+    "rosemary scalp spray",
+    "ginseng herbal hair serum",
+    "herbal hair darkening shampoo",
+    "probiotic scalp health capsules",
+    "amino acid repair mask",
+    "peptide strengthening drops",
+    "anti-dandruff herbal lotion",
+    "collagen + biotin hair beauty blend",
+    "natural thickening spray",
+    "nutrient hair gummies",
+]
+
+# Từ khóa ban đầu (sẽ được random từ danh sách)
+TU_KHOA = random.choice(DANH_SACH_TU_KHOA)
 
 # Nội dung comment (đã bỏ ký tự đặc biệt để tránh lỗi nhập)
-NOI_DUNG_GOC = """Hello, I’m from StrongBody(.AI), the Product Shop BD team.
-Are you a professional or vendor in the health or medical field?
-Now you can launch your global shop instantly – no developers, no web design.
-Everything’s ready. Just $15/month to start selling worldwide.
-https://strongbody.ai/become-seller
-"""
+NOI_DUNG_GOC = """Hi there, I’m from StrongBody AI — the global online marketplace for wellness and healthcare.
+ We connect buyers from around the world with providers and product makers in the health industry.
+We invite you to create your Provider Shop on our platform.
+ Instead of building an expensive website or complex payment system, you can have a ready‑to‑use global storefront for only $15 per month.
+You can also post blogs and insights about your expertise or local health knowledge to attract audiences."""
 
 # Số lượng pin cần comment
 SO_LAN = 5
@@ -44,12 +67,39 @@ def is_driver_alive(driver):
         return False
 
 def safe_screenshot(driver, filename):
-    """Chụp ảnh an toàn"""
+    """Chụp ảnh toàn màn hình (bao gồm cả taskbar) với thời gian hiện tại"""
+    from datetime import datetime
+    from PIL import Image, ImageDraw, ImageFont
+    
     try:
-        if is_driver_alive(driver):
-            driver.save_screenshot(filename)
-            print(f"[OK] Đã chụp ảnh: {filename}")
-            return True
+        # Chụp toàn màn hình bằng pyautogui (bao gồm taskbar)
+        screenshot = pyautogui.screenshot()
+        
+        # Thêm thời gian vào ảnh
+        draw = ImageDraw.Draw(screenshot)
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # Thử dùng font Arial, nếu không có thì dùng font mặc định
+        try:
+            font = ImageFont.truetype("arial.ttf", 28)
+        except:
+            font = ImageFont.load_default()
+        
+        # Vị trí: góc trên bên phải
+        text_bbox = draw.textbbox((0, 0), timestamp, font=font)
+        text_width = text_bbox[2] - text_bbox[0]
+        text_height = text_bbox[3] - text_bbox[1]
+        x = screenshot.width - text_width - 20
+        y = 20
+        
+        # Vẽ nền đen và chữ trắng cho dễ đọc
+        draw.rectangle([x-10, y-5, x+text_width+10, y+text_height+10], fill="black")
+        draw.text((x, y), timestamp, fill="yellow", font=font)
+        
+        # Lưu ảnh
+        screenshot.save(filename)
+        print(f"[OK] Đã chụp ảnh toàn màn hình: {filename}")
+        return True
     except Exception as e:
         print(f"[WARNING] Không thể chụp ảnh: {e}")
     return False
@@ -211,16 +261,34 @@ def click_post_button(driver):
     except:
         pass
     
-    # Fallback: Yêu cầu user
-    print("[WARNING] Không tìm thấy nút đăng.")
-    print("[ACTION] Vui lòng CLICK NÚT ĐĂNG trong trình duyệt.")
-    input(">>> Nhấn ENTER sau khi đã đăng: ")
-    return True
+    # Không tìm thấy nút đăng
+    print("[WARNING] Không tìm thấy nút đăng trong pin này.")
+    return False
 
 # ========== HÀM CHÍNH ==========
 
+def get_random_keyword(used_titles):
+    """Lấy từ khóa random không trùng với tiêu đề đã dùng"""
+    available_keywords = []
+    for kw in DANH_SACH_TU_KHOA:
+        # Kiểm tra từ khóa không trùng với bất kỳ tiêu đề nào đã dùng
+        is_duplicate = False
+        for title in used_titles:
+            if kw.lower() in title.lower() or title.lower() in kw.lower():
+                is_duplicate = True
+                break
+        if not is_duplicate:
+            available_keywords.append(kw)
+    
+    if available_keywords:
+        return random.choice(available_keywords)
+    else:
+        # Nếu hết từ khóa mới, vẫn random từ danh sách gốc
+        return random.choice(DANH_SACH_TU_KHOA)
+
 def run_pinterest_auto(so_lan):
     """Chạy tự động comment trên Pinterest"""
+    global TU_KHOA  # Để có thể thay đổi từ khóa trong quá trình chạy
     
     # === KHỞI TẠO CỐC CỐC ===
     print("\n[STEP 1] Khởi động Cốc Cốc...")
@@ -302,6 +370,7 @@ def run_pinterest_auto(so_lan):
         
         # === LẶP LẠI COMMENT ===
         commented_pins = set()  # Lưu URL các pin đã comment
+        commented_titles = set()  # Lưu tiêu đề các pin đã comment (để tránh trùng từ khóa)
         success_count = 0       # Đếm số comment thành công
         pin_index = 0           # Index của pin đang xét
         max_attempts = so_lan * 3  # Giới hạn số lần thử để tránh loop vô hạn
@@ -356,10 +425,44 @@ def run_pinterest_auto(so_lan):
                 
                 # Lấy tiêu đề pin để hiển thị
                 try:
-                    pin_title = driver.find_element(By.CSS_SELECTOR, "h1, [data-test-id='pin-title']").text[:50]
-                    print(f"[INFO] Tiêu đề: {pin_title}...")
+                    pin_title = driver.find_element(By.CSS_SELECTOR, "h1, [data-test-id='pin-title']").text[:100]
+                    print(f"[INFO] Tiêu đề: {pin_title[:50]}...")
                 except:
                     pin_title = "Unknown"
+                
+                # Kiểm tra xem đã có comment trùng với NOI_DUNG_GOC trong pin này chưa
+                try:
+                    # Lấy tất cả comment hiện có trong pin
+                    existing_comments = driver.find_elements(By.CSS_SELECTOR, 
+                        "[data-test-id='comment-item'], [data-test-id='comment-text'], .commentText, div[class*='comment']")
+                    
+                    # Lấy một phần nội dung comment gốc để so sánh (bỏ URL và ký tự đặc biệt)
+                    check_text = "StrongBody AI"  # Từ khóa đặc trưng trong comment
+                    
+                    has_duplicate = False
+                    for comment_el in existing_comments:
+                        try:
+                            comment_text = comment_el.text
+                            if check_text.lower() in comment_text.lower():
+                                has_duplicate = True
+                                print(f"[DEBUG] Tìm thấy comment trùng: {comment_text[:50]}...")
+                                break
+                        except:
+                            continue
+                    
+                    if has_duplicate:
+                        print(f"[SKIP] Pin này đã có comment trùng với NOI_DUNG_GOC, bỏ qua...")
+                        try:
+                            close_btn = driver.find_element(By.CSS_SELECTOR, "button[aria-label='Close'], button[aria-label='Đóng'], [data-test-id='closeup-close-button']")
+                            close_btn.click()
+                        except:
+                            driver.back()
+                        time.sleep(2)
+                        pin_index += 1
+                        continue
+                except Exception as e:
+                    print(f"[DEBUG] Không thể kiểm tra comment trùng: {str(e)[:50]}")
+                    # Tiếp tục comment nếu không kiểm tra được
                 
                 # Nhập comment
                 comment_text = NOI_DUNG_GOC
@@ -380,11 +483,25 @@ def run_pinterest_auto(so_lan):
                 time.sleep(1)
                 
                 # Click nút đăng
-                click_post_button(driver)
+                post_result = click_post_button(driver)
+                
+                # Nếu không tìm thấy nút đăng, bỏ qua pin này và tìm pin khác có cùng chủ đề
+                if not post_result:
+                    print(f"[SKIP] Không tìm thấy nút đăng, tìm pin khác có cùng chủ đề '{TU_KHOA}'...")
+                    try:
+                        close_btn = driver.find_element(By.CSS_SELECTOR, "button[aria-label='Close'], button[aria-label='Đóng'], [data-test-id='closeup-close-button']")
+                        close_btn.click()
+                    except:
+                        driver.back()
+                    time.sleep(2)
+                    pin_index += 1
+                    continue
+                
                 time.sleep(6)  # Đợi 6 giây trước khi chụp màn hình
                 
                 # Lưu pin vào danh sách đã comment
                 commented_pins.add(pin_url)
+                commented_titles.add(pin_title)  # Lưu tiêu đề để tránh trùng
                 success_count += 1
                 
                 # Chụp ảnh bằng chứng
@@ -449,7 +566,59 @@ def run_pinterest_auto(so_lan):
                     driver.back()
                 
                 time.sleep(2)
-                pin_index += 1  # Tiếp tục với pin tiếp theo
+                
+                # === TÌM KIẾM TỪ KHÓA MỚI SAU MỖI LẦN COMMENT THÀNH CÔNG ===
+                if success_count < so_lan:
+                    TU_KHOA = get_random_keyword(commented_titles)
+                    print(f"\n[SEARCH] Tìm kiếm từ khóa mới: {TU_KHOA}")
+                    
+                    # Tìm và nhập từ khóa mới
+                    search_selectors = [
+                        "input[name='searchBoxInput']",
+                        "input[placeholder*='Search']", 
+                        "input[data-test-id='search-box-input']",
+                        "input[aria-label*='Search']",
+                    ]
+                    
+                    search_success = False
+                    for selector in search_selectors:
+                        try:
+                            search_box = driver.find_element(By.CSS_SELECTOR, selector)
+                            if search_box.is_displayed():
+                                search_box.click()
+                                time.sleep(0.5)
+                                search_box.clear()
+                                # Xóa sạch bằng Ctrl+A rồi Delete
+                                search_box.send_keys(Keys.CONTROL + "a")
+                                search_box.send_keys(Keys.DELETE)
+                                time.sleep(0.3)
+                                search_box.send_keys(TU_KHOA)
+                                search_box.send_keys(Keys.ENTER)
+                                print(f"[OK] Đã tìm kiếm từ khóa mới")
+                                search_success = True
+                                break
+                        except:
+                            continue
+                    
+                    if not search_success:
+                        # Fallback: navigate to search URL
+                        encoded_keyword = TU_KHOA.replace(" ", "%20")
+                        driver.get(f"https://www.pinterest.com/search/pins/?q={encoded_keyword}")
+                        print(f"[OK] Đã tìm kiếm bằng URL")
+                    
+                    time.sleep(5)
+                    
+                    # Scroll xuống để bỏ qua phần bảng nổi bật
+                    print("\n[*] Scroll xuống để bỏ qua phần bảng nổi bật...")
+                    driver.execute_script("window.scrollBy(0, 800);")
+                    time.sleep(2)
+                    driver.execute_script("window.scrollBy(0, 500);")
+                    time.sleep(2)
+                    
+                    # Reset pin_index vì đã chuyển sang từ khóa mới
+                    pin_index = 0
+                else:
+                    pin_index += 1  # Tiếp tục với pin tiếp theo
                 
                 # Nghỉ ngẫu nhiên
                 if success_count < so_lan:
