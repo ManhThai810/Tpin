@@ -2,6 +2,9 @@ import time
 import random
 import pyautogui
 import pyperclip
+import os
+from datetime import datetime
+from PIL import Image, ImageDraw, ImageFont
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -49,9 +52,8 @@ TU_KHOA = random.choice(DANH_SACH_TU_KHOA)
 # Nội dung comment (đã bỏ ký tự đặc biệt để tránh lỗi nhập)
 NOI_DUNG_GOC = """Hi there, I’m from StrongBody AI — the global online marketplace for wellness and healthcare.
  We connect buyers from around the world with providers and product makers in the health industry.
-We invite you to create your Provider Shop on our platform.
  Instead of building an expensive website or complex payment system, you can have a ready‑to‑use global storefront for only $15 per month.
-You can also post blogs and insights about your expertise or local health knowledge to attract audiences."""
+You can also post blogs and insights about your expertise or local health knowledge to attract audiences. https://strongbody.ai/become-seller"""
 
 # Số lượng pin cần comment
 SO_LAN = 5
@@ -66,12 +68,12 @@ def is_driver_alive(driver):
     except:
         return False
 
-def safe_screenshot(driver, filename):
-    """Chụp ảnh toàn màn hình (bao gồm cả taskbar) với thời gian hiện tại"""
-    from datetime import datetime
-    from PIL import Image, ImageDraw, ImageFont
-    
+def safe_screenshot(driver, filename, pin_url="", output_folder="screenshots"):
+    """Chụp ảnh toàn màn hình (bao gồm cả taskbar) với thời gian hiện tại và lưu link pin"""
     try:
+        # Tạo folder nếu chưa có
+        os.makedirs(output_folder, exist_ok=True)
+        
         # Chụp toàn màn hình bằng pyautogui (bao gồm taskbar)
         screenshot = pyautogui.screenshot()
         
@@ -92,13 +94,24 @@ def safe_screenshot(driver, filename):
         x = screenshot.width - text_width - 20
         y = 20
         
-        # Vẽ nền đen và chữ trắng cho dễ đọc
+        # Vẽ nền đen và chữ vàng cho dễ đọc
         draw.rectangle([x-10, y-5, x+text_width+10, y+text_height+10], fill="black")
         draw.text((x, y), timestamp, fill="yellow", font=font)
         
-        # Lưu ảnh
-        screenshot.save(filename)
-        print(f"[OK] Đã chụp ảnh toàn màn hình: {filename}")
+        # Lưu ảnh vào folder
+        image_path = os.path.join(output_folder, filename)
+        screenshot.save(image_path)
+        print(f"[OK] Đã chụp ảnh: {image_path}")
+        
+        # Lưu link pin vào file text cùng tên
+        if pin_url:
+            txt_filename = filename.rsplit('.', 1)[0] + ".txt"
+            txt_path = os.path.join(output_folder, txt_filename)
+            with open(txt_path, "w", encoding="utf-8") as f:
+                f.write(f"Pin URL: {pin_url}\n")
+                f.write(f"Thời gian: {timestamp}\n")
+            print(f"[OK] Đã lưu link: {txt_path}")
+        
         return True
     except Exception as e:
         print(f"[WARNING] Không thể chụp ảnh: {e}")
@@ -289,6 +302,11 @@ def get_random_keyword(used_titles):
 def run_pinterest_auto(so_lan):
     """Chạy tự động comment trên Pinterest"""
     global TU_KHOA  # Để có thể thay đổi từ khóa trong quá trình chạy
+    
+    # === TẠO FOLDER OUTPUT ===
+    output_folder = os.path.join("screenshots", datetime.now().strftime("%Y%m%d_%H%M%S"))
+    os.makedirs(output_folder, exist_ok=True)
+    print(f"\n[INFO] Folder output: {output_folder}")
     
     # === KHỞI TẠO CỐC CỐC ===
     print("\n[STEP 1] Khởi động Cốc Cốc...")
@@ -504,8 +522,8 @@ def run_pinterest_auto(so_lan):
                 commented_titles.add(pin_title)  # Lưu tiêu đề để tránh trùng
                 success_count += 1
                 
-                # Chụp ảnh bằng chứng
-                safe_screenshot(driver, f"pinterest_comment_{success_count}.png")
+                # Chụp ảnh bằng chứng và lưu link pin
+                safe_screenshot(driver, f"pinterest_comment_{success_count}.png", pin_url, output_folder)
                 
                 # === KIỂM TRA CẢNH BÁO ĐỎ (hoạt động đáng ngờ) ===
                 try:
